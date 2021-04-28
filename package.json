@@ -1,0 +1,55 @@
+{
+  "name": "textile-uploader",
+  "version": "1.0.2",
+  "description": "Simple uploader class to textile.io bucket.",
+  "engines": {
+    "node": ">= 14.16"
+  },
+  "main": "./src/main.ts",
+  "bin": {
+    "tup": "./build/src/cli.js"
+  },
+  "devDependencies": {
+    "@types/jest": "~26.0.23",
+    "@types/node": "~15.0.1",
+    "@typescript-eslint/eslint-plugin": "~4.22.0",
+    "@typescript-eslint/parser": "~4.22.0",
+    "eslint": "~7.25.0",
+    "eslint-config-prettier": "~8.3.0",
+    "eslint-plugin-jest": "~24.3.6",
+    "jest": "~26.6.3",
+    "prettier": "~2.2.1",
+    "rimraf": "~3.0.2",
+    "ts-jest": "~26.5.5",
+    "tsutils": "~3.21.0",
+    "typescript": "~4.2.4"
+  },
+  "scripts": {
+    "start": "node build/src/main.js",
+    "dev:upload": "tsc -w -p tsconfig.release.json & nodemon --delay 3 build/src/cli.js -u='./test.txt'",
+    "clean": "rimraf coverage build tmp",
+    "build": "tsc -p tsconfig.release.json",
+    "build:watch": "tsc -w -p tsconfig.release.json",
+    "lint": "eslint . --ext .ts,.tsx",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "pub": "npm publish --access public"
+  },
+  "author": "turinglabsorg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/turinglabsorg/textile-uploader"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@textile/hub": "*",
+    "dotenv": "*",
+    "isomorphic-ws": "*",
+    "minimist": "*",
+    "tslib": "~2.2.0",
+    "ws": "*"
+  },
+  "volta": {
+    "node": "14.16.1"
+  }
+}
