@@ -38,7 +38,7 @@ export class TextileUploader {
       {
         key: this.textilepub,
         secret: this.textileprv
-      }, 
+      },
       identity
     )
     console.log('Bucket connected successfully')
@@ -47,15 +47,19 @@ export class TextileUploader {
     console.log('Uploading file to bucket ' + filename)
 
     // Finally upload the content
-    try {
-      const upload = {
-        path: '/' + filename,
-        content
+    let uploaded = false
+    while (!uploaded) {
+      try {
+        const upload = {
+          path: '/' + filename,
+          content
+        }
+        let push = await bucket.buckets.pushPath(bucket.bucketKey, filename, upload)
+        uploaded = true
+        return { ipfs: push.path.path, links: bucket.links, filename: filename }
+      } catch (e) {
+        console.log('Upload failed, retry..')
       }
-      let push = await bucket.buckets.pushPath(bucket.bucketKey, filename, upload)
-      return { ipfs: push.path.path, links: bucket.links, filename: filename }
-    } catch (e) {
-      return { ipfs: 'Error', links: bucket.links }
     }
   }
 }

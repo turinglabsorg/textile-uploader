@@ -1,11 +1,11 @@
 {
   "name": "textile-uploader",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Simple uploader class to textile.io bucket.",
   "engines": {
     "node": ">= 14.16"
   },
-  "main": "./src/main.ts",
+  "main": "./build/src/main.js",
   "bin": {
     "tup": "./build/src/cli.js"
   },
